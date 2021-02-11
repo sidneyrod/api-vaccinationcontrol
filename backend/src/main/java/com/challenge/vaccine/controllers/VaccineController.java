@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.challenge.vaccine.entities.Vaccine;
@@ -22,6 +23,7 @@ public class VaccineController {
 	private VaccineRespository vaccineRespository;
 	
 	@GetMapping
+	@ResponseStatus(HttpStatus.CREATED)
 	public List<Vaccine> list() {
 	return vaccineRespository.findAll();
 	
@@ -35,7 +37,7 @@ public class VaccineController {
 		}
 		else {
 			return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
-		} 
+		}
 		
 	}
 	
