@@ -1,7 +1,7 @@
 package com.challenge.vaccine.entities;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.Instant;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,14 +24,14 @@ public class Vaccine implements Serializable{
 	@NotNull
 	private String userEmail;
 	@NotNull
-	private Date vaccineDate;
+	private Instant vaccineDate;
 	
 
 	public Vaccine() {
 		
 	}
 
-	public Vaccine(Long id, String vaccineName, String userEmail, Date vaccineDate) {
+	public Vaccine(Long id, String vaccineName, String userEmail, Instant vaccineDate) {
 		this.id = id;
 		this.vaccineName = vaccineName;
 		this.userEmail = userEmail;
@@ -62,11 +62,11 @@ public class Vaccine implements Serializable{
 		this.userEmail = userEmail;
 	}
 
-	public Date getVaccineDate() {
+	public Instant getVaccineDate() {
 		return vaccineDate;
 	}
 
-	public void setVaccineDate(Date vaccineDate) {
+	public void setVaccineDate(Instant vaccineDate) {
 		this.vaccineDate = vaccineDate;
 	}
 	
