@@ -2,17 +2,14 @@ package com.challenge.vaccine.entities;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import com.sun.istack.NotNull;
 
 @Entity
 @Table(name = "vaccine")
@@ -22,22 +19,19 @@ public class Vaccine implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@NotNull
 	private String vaccineName;
+	@NotNull
 	private String userEmail;
+	@NotNull
 	private Date vaccineDate;
 	
-	@ManyToMany
-	@JoinTable(name = "users_vaccine",
-		joinColumns = @JoinColumn(name = "vaccine_id"),
-		inverseJoinColumns = @JoinColumn(name = "users_id"))
-	private Set<Users> users = new HashSet<>();
-	
+
 	public Vaccine() {
 		
 	}
 
 	public Vaccine(Long id, String vaccineName, String userEmail, Date vaccineDate) {
-		super();
 		this.id = id;
 		this.vaccineName = vaccineName;
 		this.userEmail = userEmail;
@@ -76,9 +70,6 @@ public class Vaccine implements Serializable{
 		this.vaccineDate = vaccineDate;
 	}
 	
-	public Set<Users> getUsers() {
-		return users;
-	}
 
 	@Override
 	public int hashCode() {

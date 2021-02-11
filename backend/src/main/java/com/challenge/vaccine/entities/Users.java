@@ -14,23 +14,28 @@ import com.sun.istack.NotNull;
 
 @Entity
 @Table(name = "users")
-public class Users implements Serializable {
+public class Users implements Serializable { 
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@NotNull
 	private String name;
+	@NotNull
+	@Column(nullable = false, length = 50, unique=true)
 	private String email;
+	@NotNull
+	@Column(nullable = false, length = 11, unique=true)
 	private String numberCpf;
+	@NotNull
 	private Date birthDate;
-	
+
 	public Users() {
 		
 	}
 
 	public Users(Long id, String name, String email, String numberCpf, Date birthDate) {
-		super();
 		this.id = id;
 		this.name = name;
 		this.email = email;
@@ -54,8 +59,6 @@ public class Users implements Serializable {
 		this.name = name;
 	}
 
-	@NotNull
-	@Column(nullable = false, length = 50)
 	public String getEmail() {
 		return email;
 	}
@@ -64,8 +67,6 @@ public class Users implements Serializable {
 		this.email = email;
 	}
 
-	@NotNull
-	@Column(nullable = false, length = 11, unique=true)
 	public String getNumberCpf() {
 		return numberCpf;
 	}
@@ -81,6 +82,7 @@ public class Users implements Serializable {
 	public void setBirthDate(Date birthDate) {
 		this.birthDate = birthDate;
 	}
+
 
 	@Override
 	public int hashCode() {
