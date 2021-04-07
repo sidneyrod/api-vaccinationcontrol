@@ -1,9 +1,13 @@
 package com.challenge.vaccine.dto;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
 import com.challenge.vaccine.entities.Users;
+import com.challenge.vaccine.entities.Vaccine;
 
 public class UsersDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -13,6 +17,8 @@ public class UsersDTO implements Serializable {
 	private String email;
 	private String numberCpf;
 	private Date birthDate;
+	
+	private List<VaccineDTO> vaccines = new ArrayList<>();
 	
 	public UsersDTO() {
 	}
@@ -31,6 +37,12 @@ public class UsersDTO implements Serializable {
 		email = entity.getEmail();
 		numberCpf = entity.getNumberCpf();
 		birthDate = entity.getBirthDate();
+	}
+	
+	public UsersDTO(Users entity, Set<Vaccine> vaccines) {
+		this(entity);
+		vaccines.forEach(vacc -> this.vaccines.add(new VaccineDTO(vacc)));
+		
 	}
 
 	public Long getId() {
@@ -71,5 +83,9 @@ public class UsersDTO implements Serializable {
 
 	public void setBirthDate(Date birthDate) {
 		this.birthDate = birthDate;
+	}
+
+	public List<VaccineDTO> getVaccines() {
+		return vaccines;
 	}
 }

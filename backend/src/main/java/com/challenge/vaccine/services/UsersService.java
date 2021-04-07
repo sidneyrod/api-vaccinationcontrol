@@ -34,7 +34,7 @@ public class UsersService {
 	public UsersDTO findById(Long id) {
 		Optional<Users> obj = repository.findById(id);
 		Users entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entity not found"));
-		return new UsersDTO(entity);
+		return new UsersDTO(entity, entity.getVaccines());
 	}
 
 	@Transactional

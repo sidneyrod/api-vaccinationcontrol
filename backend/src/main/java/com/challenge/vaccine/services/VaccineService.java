@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.challenge.vaccine.dto.VaccineDTO;
 import com.challenge.vaccine.entities.Vaccine;
-import com.challenge.vaccine.repositories.VaccineRespository;
+import com.challenge.vaccine.repositories.VaccineRepository;
 import com.challenge.vaccine.services.exceptions.DatabaseException;
 import com.challenge.vaccine.services.exceptions.ResourceNotFoundException;
 
@@ -22,7 +22,7 @@ import com.challenge.vaccine.services.exceptions.ResourceNotFoundException;
 public class VaccineService {
 
 	@Autowired
-	private VaccineRespository repository;
+	private VaccineRepository repository;
 	
 	@Transactional(readOnly = true)
 	public Page<VaccineDTO> findAllPaged(PageRequest pageRequest) {

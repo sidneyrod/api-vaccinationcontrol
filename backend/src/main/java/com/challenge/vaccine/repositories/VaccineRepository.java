@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.challenge.vaccine.entities.Vaccine;
 
 @Repository
-public interface VaccineRespository extends JpaRepository<Vaccine, Long> {
+public interface VaccineRepository extends JpaRepository<Vaccine, Long> {
 
 }

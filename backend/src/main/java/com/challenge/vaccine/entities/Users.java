@@ -2,12 +2,17 @@ package com.challenge.vaccine.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import com.sun.istack.NotNull;
@@ -30,6 +35,12 @@ public class Users implements Serializable {
 	private String numberCpf;
 	@NotNull
 	private Date birthDate;
+	
+	@ManyToMany
+	@JoinTable(name = "tb_users_vaccine",
+		joinColumns = @JoinColumn(name = "users_id"),
+		inverseJoinColumns = @JoinColumn(name = "vaccine_id"))
+	private Set<Vaccine> vaccines = new HashSet<>();
 
 	public Users() {
 		
@@ -82,7 +93,10 @@ public class Users implements Serializable {
 	public void setBirthDate(Date birthDate) {
 		this.birthDate = birthDate;
 	}
-
+	
+	public Set<Vaccine> getVaccines() {
+		return vaccines;
+	}
 
 	@Override
 	public int hashCode() {
@@ -108,8 +122,4 @@ public class Users implements Serializable {
 			return false;
 		return true;
 	}
-	
-	
-	
 }
-
