@@ -64,4 +64,5 @@ public class UsersResource {
 	public ResponseEntity<UsersDTO> delete(@PathVariable Long id) {
 		service.delete(id);
 		return ResponseEntity.noContent().build();
-	}}
+	}
+}
