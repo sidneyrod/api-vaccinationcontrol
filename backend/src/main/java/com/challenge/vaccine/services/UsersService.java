@@ -76,4 +76,3 @@ public class UsersService {
 		entity.setBirthDate(dto.getBirthDate());
 	}
 }
-

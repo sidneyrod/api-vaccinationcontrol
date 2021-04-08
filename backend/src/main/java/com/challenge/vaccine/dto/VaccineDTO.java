@@ -3,6 +3,8 @@ package com.challenge.vaccine.dto;
 import java.io.Serializable;
 import java.time.Instant;
 
+import javax.validation.constraints.PastOrPresent;
+
 import com.challenge.vaccine.entities.Vaccine;
 
 public class VaccineDTO implements Serializable {
@@ -11,6 +13,8 @@ public class VaccineDTO implements Serializable {
 	private Long id;
 	private String vaccineName;
 	private String userEmail;
+	
+	@PastOrPresent(message = "Vaccine date cannot be future")
 	private Instant vaccineDate;
 	
 	public VaccineDTO() {

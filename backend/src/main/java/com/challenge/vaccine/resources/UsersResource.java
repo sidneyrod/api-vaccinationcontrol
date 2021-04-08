@@ -2,6 +2,8 @@ package com.challenge.vaccine.resources;
 
 import java.net.URI;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -32,7 +34,7 @@ public class UsersResource {
 	public ResponseEntity<Page<UsersDTO>> findAll(
 			@RequestParam(value = "page", defaultValue = "0") Integer page,
 			@RequestParam(value = "linesPerPage", defaultValue = "15") Integer linesPerPage,
-			@RequestParam(value = "orderBy", defaultValue = "id") String orderBy,
+			@RequestParam(value = "orderBy", defaultValue = "name") String orderBy,
 			@RequestParam(value = "direction", defaultValue = "ASC") String direction) {
 		
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
@@ -48,14 +50,14 @@ public class UsersResource {
 	}
 	
 	@PostMapping
-	public ResponseEntity<UsersDTO> insert(@RequestBody UsersDTO dto) {
+	public ResponseEntity<UsersDTO> insert(@Valid @RequestBody UsersDTO dto) {
 		dto = service.insert(dto);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getId()).toUri();
 		return ResponseEntity.created(uri).body(dto);
 	}
 	
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<UsersDTO> update(@PathVariable Long id, @RequestBody UsersDTO dto) {
+	public ResponseEntity<UsersDTO> update(@Valid @PathVariable Long id, @RequestBody UsersDTO dto) {
 		dto = service.update(id, dto);
 		return ResponseEntity.ok().body(dto);
 	}

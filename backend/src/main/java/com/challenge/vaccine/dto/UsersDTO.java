@@ -6,6 +6,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+
 import com.challenge.vaccine.entities.Users;
 import com.challenge.vaccine.entities.Vaccine;
 
@@ -13,7 +16,11 @@ public class UsersDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Long id;
+	
+	@NotBlank(message = "Required field")
 	private String name;
+	
+	@Email(message = "Please enter a valid email address")
 	private String email;
 	private String numberCpf;
 	private Date birthDate;
