@@ -3,17 +3,27 @@ package com.challenge.vaccine.dto;
 import java.io.Serializable;
 import java.time.Instant;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.PastOrPresent;
 
 import com.challenge.vaccine.entities.Vaccine;
+import com.sun.istack.NotNull;
 
 public class VaccineDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Long id;
+	
+	@NotNull
+	@NotBlank(message = "Confirm that the name of the vaccine applied is the correct one")
 	private String vaccineName;
+	
+	@NotNull
+	@Email(message = "Please enter a valid email address")
 	private String userEmail;
 	
+	@NotNull
 	@PastOrPresent(message = "Vaccine date cannot be future")
 	private Instant vaccineDate;
 	

@@ -8,5 +8,4 @@ import com.challenge.vaccine.entities.Users;
 @Repository
 public interface UsersRespository extends JpaRepository<Users, Long> {
 
-	
 }

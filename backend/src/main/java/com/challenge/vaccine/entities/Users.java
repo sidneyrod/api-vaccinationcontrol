@@ -15,8 +15,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import com.sun.istack.NotNull;
-
 @Entity
 @Table(name = "users")
 public class Users implements Serializable { 
@@ -25,15 +23,15 @@ public class Users implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@NotNull
+	
 	private String name;
-	@NotNull
+	
 	@Column(nullable = false, length = 50, unique=true)
 	private String email;
-	@NotNull
+	
 	@Column(nullable = false, length = 11, unique=true)
 	private String numberCpf;
-	@NotNull
+	
 	private Date birthDate;
 	
 	@ManyToMany

@@ -27,7 +27,7 @@ public class UsersService {
 	@Transactional(readOnly = true)
 	public Page<UsersDTO> findAllPaged(PageRequest pageRequest) {
 		Page<Users> list =  repository.findAll(pageRequest);
-		return list.map(x -> new UsersDTO(x));	 
+		return list.map(x -> new UsersDTO(x, x.getVaccines()));	 
 	}
 
 	@Transactional(readOnly = true)

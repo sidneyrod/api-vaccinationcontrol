@@ -8,6 +8,7 @@ import java.util.Set;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.PastOrPresent;
 
 import com.challenge.vaccine.entities.Users;
 import com.challenge.vaccine.entities.Vaccine;
@@ -17,12 +18,21 @@ public class UsersDTO implements Serializable {
 
 	private Long id;
 	
+	@javax.validation.constraints.NotNull
 	@NotBlank(message = "Required field")
 	private String name;
 	
+	@javax.validation.constraints.NotNull
+	@NotBlank(message = "Please enter a valid email address")
 	@Email(message = "Please enter a valid email address")
 	private String email;
+	
+	@javax.validation.constraints.NotNull
+	@NotBlank(message = "Please enter a valid CPF")
 	private String numberCpf;
+	
+	@javax.validation.constraints.NotNull(message = "Please enter a valid birthdate")
+	@PastOrPresent
 	private Date birthDate;
 	
 	private List<VaccineDTO> vaccines = new ArrayList<>();
