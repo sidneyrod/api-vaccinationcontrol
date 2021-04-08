@@ -32,6 +32,9 @@ public class UsersResource {
 	
 	@GetMapping
 	public ResponseEntity<Page<UsersDTO>> findAll(
+			
+			@RequestParam(value = "vaccineId", defaultValue = "0") Long vaccineId,
+			@RequestParam(value = "name", defaultValue = "") String name,
 			@RequestParam(value = "page", defaultValue = "0") Integer page,
 			@RequestParam(value = "linesPerPage", defaultValue = "15") Integer linesPerPage,
 			@RequestParam(value = "orderBy", defaultValue = "name") String orderBy,
@@ -39,7 +42,7 @@ public class UsersResource {
 		
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		
-		Page<UsersDTO> list = service.findAllPaged(pageRequest);
+		Page<UsersDTO> list = service.findAllPaged(vaccineId, name, pageRequest);
 		return ResponseEntity.ok().body(list);
 	}
 	

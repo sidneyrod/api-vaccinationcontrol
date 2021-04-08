@@ -1,5 +1,7 @@
 package com.challenge.vaccine.services;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 import javax.persistence.EntityNotFoundException;
@@ -14,7 +16,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.challenge.vaccine.dto.UsersDTO;
 import com.challenge.vaccine.entities.Users;
+import com.challenge.vaccine.entities.Vaccine;
 import com.challenge.vaccine.repositories.UsersRespository;
+import com.challenge.vaccine.repositories.VaccineRepository;
 import com.challenge.vaccine.services.exceptions.DatabaseException;
 import com.challenge.vaccine.services.exceptions.ResourceNotFoundException;
 
@@ -24,10 +28,15 @@ public class UsersService {
 	@Autowired
 	private UsersRespository repository;
 	
+	@Autowired
+	private VaccineRepository vaccineRepository;
+	
 	@Transactional(readOnly = true)
-	public Page<UsersDTO> findAllPaged(PageRequest pageRequest) {
-		Page<Users> list =  repository.findAll(pageRequest);
-		return list.map(x -> new UsersDTO(x, x.getVaccines()));	 
+	public Page<UsersDTO> findAllPaged(Long vaccineId, String name, PageRequest pageRequest) {
+		List<Vaccine> vaccines = (vaccineId == 0) ? null : Arrays.asList(vaccineRepository.getOne(vaccineId));
+		Page<Users> page =  repository.find(vaccines, name, pageRequest);
+		repository.findUsersWithVaccines(page.getContent());
+		return page.map(x -> new UsersDTO(x, x.getVaccines()));
 	}
 
 	@Transactional(readOnly = true)
