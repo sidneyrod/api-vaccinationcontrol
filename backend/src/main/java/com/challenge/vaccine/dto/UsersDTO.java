@@ -19,12 +19,12 @@ public class UsersDTO implements Serializable {
 	private Long id;
 	
 	@javax.validation.constraints.NotNull
-	@NotBlank(message = "Required field")
+	@NotBlank(message = "Required field name")
 	private String name;
 	
 	@javax.validation.constraints.NotNull
 	@NotBlank(message = "Please enter a valid email address")
-	@Email(message = "Please enter a valid email address")
+	@Email(message = "Insert a valid email")
 	private String email;
 	
 	@javax.validation.constraints.NotNull

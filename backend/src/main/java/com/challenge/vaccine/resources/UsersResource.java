@@ -32,7 +32,6 @@ public class UsersResource {
 	
 	@GetMapping
 	public ResponseEntity<Page<UsersDTO>> findAll(
-			
 			@RequestParam(value = "vaccineId", defaultValue = "0") Long vaccineId,
 			@RequestParam(value = "name", defaultValue = "") String name,
 			@RequestParam(value = "page", defaultValue = "0") Integer page,
