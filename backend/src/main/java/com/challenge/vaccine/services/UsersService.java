@@ -4,8 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-import javax.persistence.EntityNotFoundException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -56,15 +54,13 @@ public class UsersService {
 
 	@Transactional
 	public UsersDTO update(Long id, UsersDTO dto) {
-		try {
-			Users entity = repository.getOne(id);
-			copyDtoToEntity(dto, entity);
-			entity = repository.save(entity);
-			return new UsersDTO(entity);
-		} catch (EntityNotFoundException e) {
-			throw new ResourceNotFoundException("Id not found" + id);
-	}
+		Optional<Users> obj = repository.findById(id);
+		Users entity = obj.orElseThrow(() -> new ResourceNotFoundException("Id not found" + id));
+		copyDtoToEntity(dto, entity);
+		entity = repository.save(entity);
+		return new UsersDTO(entity);
 }
+	
 	public void delete(Long id) {
 		try {
 		repository.deleteById(id);
