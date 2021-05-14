@@ -2,8 +2,6 @@ package com.challenge.vaccine.services;
 
 import java.util.Optional;
 
-import javax.persistence.EntityNotFoundException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -47,14 +45,11 @@ public class VaccineService {
 
 	@Transactional
 	public VaccineDTO update(Long id, VaccineDTO dto) {
-		try {
-			Vaccine entity = repository.getOne(id);
-			copyDtoToEntity(dto, entity);
-			entity = repository.save(entity);
-			return new VaccineDTO(entity);
-		} catch (EntityNotFoundException e) {
-			throw new ResourceNotFoundException("Id not found" + id);
-	}
+		Optional<Vaccine> obj = repository.findById(id);
+		Vaccine entity = obj.orElseThrow(() -> new ResourceNotFoundException("Id not found" + id));
+		copyDtoToEntity(dto, entity);
+		entity = repository.save(entity);
+		return new VaccineDTO(entity);
 }
 	public void delete(Long id) {
 		try {
