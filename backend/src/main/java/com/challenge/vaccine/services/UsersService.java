@@ -59,7 +59,7 @@ public class UsersService {
 		copyDtoToEntity(dto, entity);
 		entity = repository.save(entity);
 		return new UsersDTO(entity);
-}
+	}
 	
 	public void delete(Long id) {
 		try {

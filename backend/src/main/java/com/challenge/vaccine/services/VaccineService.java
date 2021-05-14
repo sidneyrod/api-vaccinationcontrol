@@ -50,7 +50,7 @@ public class VaccineService {
 		copyDtoToEntity(dto, entity);
 		entity = repository.save(entity);
 		return new VaccineDTO(entity);
-}
+	}
 	public void delete(Long id) {
 		try {
 		repository.deleteById(id);
