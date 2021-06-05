@@ -20,18 +20,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.challenge.vaccine.dto.VaccineDTO;
-import com.challenge.vaccine.services.VaccineService;
+import com.challenge.vaccine.dto.VaccinationControlDTO;
+import com.challenge.vaccine.services.VaccinationControlService;
 
 @RestController
-@RequestMapping(value = "/vaccine")
-public class VaccineResource {
+@RequestMapping(value = "/vaccinationcontrols")
+public class VaccinationControlResource {
 
 	@Autowired
-	private VaccineService service;
+	private VaccinationControlService service;
 	
 	@GetMapping
-	public ResponseEntity<Page<VaccineDTO>> findAll(
+	public ResponseEntity<Page<VaccinationControlDTO>> findAll(
 			@RequestParam(value = "page", defaultValue = "0") Integer page,
 			@RequestParam(value = "linesPerPage", defaultValue = "12") Integer linesPerPage,
 			@RequestParam(value = "orderBy", defaultValue = "vaccineName") String orderBy,
@@ -39,31 +39,31 @@ public class VaccineResource {
 		
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		
-		Page<VaccineDTO> list = service.findAllPaged(pageRequest);
+		Page<VaccinationControlDTO> list = service.findAllPaged(pageRequest);
 		return ResponseEntity.ok().body(list);
 	}
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<VaccineDTO> findById(@PathVariable Long id) {
-		VaccineDTO dto = service.findById(id);
+	public ResponseEntity<VaccinationControlDTO> findById(@PathVariable Long id) {
+		VaccinationControlDTO dto = service.findById(id);
 		return ResponseEntity.ok().body(dto);
 	}
 	
 	@PostMapping
-	public ResponseEntity<VaccineDTO> insert(@Valid @RequestBody VaccineDTO dto) {
+	public ResponseEntity<VaccinationControlDTO> insert(@Valid @RequestBody VaccinationControlDTO dto) {
 		dto = service.insert(dto);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getId()).toUri();
 		return ResponseEntity.created(uri).body(dto);
 	}
 	
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<VaccineDTO> update(@Valid @PathVariable Long id, @RequestBody VaccineDTO dto) {
+	public ResponseEntity<VaccinationControlDTO> update(@Valid @PathVariable Long id, @RequestBody VaccinationControlDTO dto) {
 		dto = service.update(id, dto);
 		return ResponseEntity.ok().body(dto);
 	}
 	
 	@DeleteMapping(value = "/{id}")
-	public ResponseEntity<VaccineDTO> delete(@PathVariable Long id) {
+	public ResponseEntity<VaccinationControlDTO> delete(@PathVariable Long id) {
 		service.delete(id);
 		return ResponseEntity.noContent().build();
 	}

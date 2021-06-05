@@ -7,9 +7,9 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.PastOrPresent;
 
-import com.challenge.vaccine.entities.Vaccine;
+import com.challenge.vaccine.entities.VaccinationControl;
 
-public class VaccineDTO implements Serializable {
+public class VaccinationControlDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Long id;
@@ -23,23 +23,23 @@ public class VaccineDTO implements Serializable {
 	@PastOrPresent(message = "Vaccine date cannot be future")
 	private Instant vaccineDate;
 	
-	public VaccineDTO() {
+	public VaccinationControlDTO() {
 	}
 
-	public VaccineDTO(Long id, String vaccineName, String userEmail, Instant vaccineDate) {
+	public VaccinationControlDTO(Long id, String vaccineName, String userEmail, Instant vaccineDate) {
 		this.id = id;
 		this.vaccineName = vaccineName;
 		this.userEmail = userEmail;
 		this.vaccineDate = vaccineDate;
 	}
 	
-	public VaccineDTO(Vaccine entity) {
+	public VaccinationControlDTO(VaccinationControl entity) {
 		id = entity.getId();
 		vaccineName = entity.getVaccineName();
 		userEmail = entity.getUserEmail();
 		vaccineDate = entity.getVaccineDate();
 	}
-
+	
 	public Long getId() {
 		return id;
 	}

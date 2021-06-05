@@ -10,46 +10,47 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.challenge.vaccine.dto.VaccineDTO;
-import com.challenge.vaccine.entities.Vaccine;
-import com.challenge.vaccine.repositories.VaccineRepository;
+import com.challenge.vaccine.dto.VaccinationControlDTO;
+import com.challenge.vaccine.entities.VaccinationControl;
+import com.challenge.vaccine.repositories.VaccinationControlRepository;
 import com.challenge.vaccine.services.exceptions.DatabaseException;
 import com.challenge.vaccine.services.exceptions.ResourceNotFoundException;
 
 @Service
-public class VaccineService {
+public class VaccinationControlService {
 
 	@Autowired
-	private VaccineRepository repository;
+	private VaccinationControlRepository repository;
 	
 	@Transactional(readOnly = true)
-	public Page<VaccineDTO> findAllPaged(PageRequest pageRequest) {
-		Page<Vaccine> list =  repository.findAll(pageRequest);
-		return list.map(x -> new VaccineDTO(x));	 
+	public Page<VaccinationControlDTO> findAllPaged(PageRequest pageRequest) {
+		Page<VaccinationControl> list =  repository.findAll(pageRequest);
+		return list.map(x -> new VaccinationControlDTO(x));	 
 	}
-
+	
+	
 	@Transactional(readOnly = true)
-	public VaccineDTO findById(Long id) {
-		Optional<Vaccine> obj = repository.findById(id);
-		Vaccine entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entity not found"));
-		return new VaccineDTO(entity);
+	public VaccinationControlDTO findById(Long id) {
+		Optional<VaccinationControl> obj = repository.findById(id);
+		VaccinationControl entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entity not found"));
+		return new VaccinationControlDTO(entity);
 	}
 
 	@Transactional
-	public VaccineDTO insert(VaccineDTO dto) {
-		Vaccine entity = new Vaccine();
+	public VaccinationControlDTO insert(VaccinationControlDTO dto) {
+		VaccinationControl entity = new VaccinationControl();
 		copyDtoToEntity(dto, entity);
 		entity = repository.save(entity);
-		return new VaccineDTO(entity);
+		return new VaccinationControlDTO(entity);
 	}
 
 	@Transactional
-	public VaccineDTO update(Long id, VaccineDTO dto) {
-		Optional<Vaccine> obj = repository.findById(id);
-		Vaccine entity = obj.orElseThrow(() -> new ResourceNotFoundException("Id not found" + id));
+	public VaccinationControlDTO update(Long id, VaccinationControlDTO dto) {
+		Optional<VaccinationControl> obj = repository.findById(id);
+		VaccinationControl entity = obj.orElseThrow(() -> new ResourceNotFoundException("Id not found" + id));
 		copyDtoToEntity(dto, entity);
 		entity = repository.save(entity);
-		return new VaccineDTO(entity);
+		return new VaccinationControlDTO(entity);
 	}
 	public void delete(Long id) {
 		try {
@@ -64,10 +65,9 @@ public class VaccineService {
 		}
 	}
 
-	private void copyDtoToEntity(VaccineDTO dto, Vaccine entity) {
+	private void copyDtoToEntity(VaccinationControlDTO dto, VaccinationControl entity) {
 		entity.setVaccineName(dto.getVaccineName());
 		entity.setUserEmail(dto.getUserEmail());
 		entity.setVaccineDate(dto.getVaccineDate());
 	}
-	
 }

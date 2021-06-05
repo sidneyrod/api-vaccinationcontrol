@@ -20,20 +20,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.challenge.vaccine.dto.UsersDTO;
-import com.challenge.vaccine.services.UsersService;
+import com.challenge.vaccine.dto.UserDTO;
+import com.challenge.vaccine.services.UserService;
 
 @RestController
-@RequestMapping(value = "/users")
-public class UsersResource {
+@RequestMapping(value = "/user")
+public class UserResource {
 
 	@Autowired
-	private UsersService service;
+	private UserService service;
 	
 	@GetMapping
-	public ResponseEntity<Page<UsersDTO>> findAll(
-			@RequestParam(value = "vaccineId", defaultValue = "0") Long vaccineId,
-			@RequestParam(value = "name", defaultValue = "") String name,
+	public ResponseEntity<Page<UserDTO>> findAll(
 			@RequestParam(value = "page", defaultValue = "0") Integer page,
 			@RequestParam(value = "linesPerPage", defaultValue = "15") Integer linesPerPage,
 			@RequestParam(value = "orderBy", defaultValue = "name") String orderBy,
@@ -41,31 +39,31 @@ public class UsersResource {
 		
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		
-		Page<UsersDTO> list = service.findAllPaged(vaccineId, name, pageRequest);
+		Page<UserDTO> list = service.findAllPaged(pageRequest);
 		return ResponseEntity.ok().body(list);
 	}
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<UsersDTO> findById(@PathVariable Long id) {
-		UsersDTO dto = service.findById(id);
+	public ResponseEntity<UserDTO> findById(@PathVariable Long id) {
+		UserDTO dto = service.findById(id);
 		return ResponseEntity.ok().body(dto);
 	}
 	
 	@PostMapping
-	public ResponseEntity<UsersDTO> insert(@Valid @RequestBody UsersDTO dto) {
+	public ResponseEntity<UserDTO> insert(@Valid @RequestBody UserDTO dto) {
 		dto = service.insert(dto);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getId()).toUri();
 		return ResponseEntity.created(uri).body(dto);
 	}
 	
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<UsersDTO> update(@Valid @PathVariable Long id, @RequestBody UsersDTO dto) {
+	public ResponseEntity<UserDTO> update(@Valid @PathVariable Long id, @RequestBody UserDTO dto) {
 		dto = service.update(id, dto);
 		return ResponseEntity.ok().body(dto);
 	}
 	
 	@DeleteMapping(value = "/{id}")
-	public ResponseEntity<UsersDTO> delete(@PathVariable Long id) {
+	public ResponseEntity<UserDTO> delete(@PathVariable Long id) {
 		service.delete(id);
 		return ResponseEntity.noContent().build();
 	}

@@ -2,19 +2,16 @@ package com.challenge.vaccine.entities;
 
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "tb_vaccine")
-public class Vaccine implements Serializable{
+@Table(name = "tb_vaccinationcontrol")
+public class VaccinationControl implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -24,14 +21,10 @@ public class Vaccine implements Serializable{
 	private String userEmail;
 	private Instant vaccineDate;
 	
-	@ManyToMany(mappedBy = "vaccines")
-	private Set<Users> users = new HashSet<>();	
-
-	public Vaccine() {
-		
+	public VaccinationControl() {
 	}
 
-	public Vaccine(Long id, String vaccineName, String userEmail, Instant vaccineDate) {
+	public VaccinationControl(Long id, String vaccineName, String userEmail, Instant vaccineDate) {
 		this.id = id;
 		this.vaccineName = vaccineName;
 		this.userEmail = userEmail;
@@ -70,10 +63,6 @@ public class Vaccine implements Serializable{
 		this.vaccineDate = vaccineDate;
 	}
 	
-	public Set<Users> getUsers() {
-		return users;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -90,7 +79,7 @@ public class Vaccine implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Vaccine other = (Vaccine) obj;
+		VaccinationControl other = (VaccinationControl) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -98,7 +87,4 @@ public class Vaccine implements Serializable{
 			return false;
 		return true;
 	}
-	
-	
 }
-

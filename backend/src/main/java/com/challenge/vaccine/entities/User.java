@@ -12,12 +12,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "tb_users")
-public class Users implements Serializable { 
+@Table(name = "tb_user")
+public class User implements Serializable { 
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -34,17 +34,17 @@ public class Users implements Serializable {
 	
 	private Date birthDate;
 	
-	@ManyToMany
-	@JoinTable(name = "tb_users_vaccine",
-		joinColumns = @JoinColumn(name = "users_id"),
-		inverseJoinColumns = @JoinColumn(name = "vaccine_id"))
-	private Set<Vaccine> vaccines = new HashSet<>();
+	@OneToMany()
+	@JoinTable(name = "tb_user_vaccinationcontrol",
+	joinColumns = @JoinColumn(name = "user_id"),
+	inverseJoinColumns = @JoinColumn(name = "vaccinationcontrol_id"))
+	private Set<VaccinationControl> vaccinationControls = new HashSet<>();
 
-	public Users() {
+	public User() {
 		
 	}
 
-	public Users(Long id, String name, String email, String numberCpf, Date birthDate) {
+	public User(Long id, String name, String email, String numberCpf, Date birthDate) {
 		this.id = id;
 		this.name = name;
 		this.email = email;
@@ -92,8 +92,8 @@ public class Users implements Serializable {
 		this.birthDate = birthDate;
 	}
 	
-	public Set<Vaccine> getVaccines() {
-		return vaccines;
+	public Set<VaccinationControl> getVaccineApplicationControls() {
+		return vaccinationControls;
 	}
 
 	@Override
@@ -112,7 +112,7 @@ public class Users implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Users other = (Users) obj;
+		User other = (User) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

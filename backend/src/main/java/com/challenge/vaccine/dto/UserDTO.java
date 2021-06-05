@@ -8,39 +8,40 @@ import java.util.Set;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
 
-import com.challenge.vaccine.entities.Users;
-import com.challenge.vaccine.entities.Vaccine;
+import com.challenge.vaccine.entities.User;
+import com.challenge.vaccine.entities.VaccinationControl;
 
-public class UsersDTO implements Serializable {
+public class UserDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Long id;
 	
-	@javax.validation.constraints.NotNull
+	@NotNull
 	@NotBlank(message = "Required field name")
 	private String name;
 	
-	@javax.validation.constraints.NotNull
+	@NotNull
 	@NotBlank(message = "Please enter a valid email address")
 	@Email(message = "Insert a valid email")
 	private String email;
 	
-	@javax.validation.constraints.NotNull
+	@NotNull
 	@NotBlank(message = "Please enter a valid CPF")
 	private String numberCpf;
 	
-	@javax.validation.constraints.NotNull(message = "Please enter a valid birthdate")
+	@NotNull(message = "Please enter a valid birthdate")
 	@PastOrPresent
 	private Date birthDate;
 	
-	private List<VaccineDTO> vaccines = new ArrayList<>();
+	private List<VaccinationControl> vaccinationControls = new ArrayList<>();
 	
-	public UsersDTO() {
+	public UserDTO() {
 	}
 
-	public UsersDTO(Long id, String name, String email, String numberCpf, Date birthDate) {
+	public UserDTO(Long id, String name, String email, String numberCpf, Date birthDate) {
 		this.id = id;
 		this.name = name;
 		this.email = email;
@@ -48,7 +49,7 @@ public class UsersDTO implements Serializable {
 		this.birthDate = birthDate;
 	}
 	
-	public UsersDTO(Users entity) {
+	public UserDTO(User entity) {
 		id = entity.getId();
 		name = entity.getName();
 		email = entity.getEmail();
@@ -56,12 +57,11 @@ public class UsersDTO implements Serializable {
 		birthDate = entity.getBirthDate();
 	}
 	
-	public UsersDTO(Users entity, Set<Vaccine> vaccines) {
+	public UserDTO (User entity, Set<VaccinationControl> vaccinationControls) {
 		this(entity);
-		vaccines.forEach(vacc -> this.vaccines.add(new VaccineDTO(vacc)));
-		
+		vaccinationControls.forEach(vacc -> this.vaccinationControls.add(vacc));
 	}
-
+	
 	public Long getId() {
 		return id;
 	}
@@ -102,7 +102,7 @@ public class UsersDTO implements Serializable {
 		this.birthDate = birthDate;
 	}
 
-	public List<VaccineDTO> getVaccines() {
-		return vaccines;
+	public List<VaccinationControl> getVaccinationControls() {
+		return vaccinationControls;
 	}
 }
