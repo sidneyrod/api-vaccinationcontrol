@@ -1,4 +1,4 @@
-package com.challenge.vaccine.services.exceptions;
+package com.apirestvaccinationcontrol.services.exceptions;
 
 public class DatabaseException extends RuntimeException {
 	

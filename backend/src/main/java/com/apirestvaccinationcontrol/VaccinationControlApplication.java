@@ -1,13 +1,13 @@
-package com.challenge.vaccine;
+package com.apirestvaccinationcontrol;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class VaccineApplication {
+public class VaccinationControlApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(VaccineApplication.class, args);
+		SpringApplication.run(VaccinationControlApplication.class, args);
 	}
 
 }

@@ -1,4 +1,4 @@
-package com.challenge.vaccine.resources.exceptions;
+package com.apirestvaccinationcontrol.resources.exceptions;
 
 import java.io.Serializable;
 import java.time.Instant;

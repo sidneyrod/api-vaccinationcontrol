@@ -1,4 +1,4 @@
-package com.challenge.vaccine.entities;
+package com.apirestvaccinationcontrol.entities;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -10,14 +10,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "tb_user")
-public class User implements Serializable { 
+@Table(name = "tb_vaccineecipient")
+public class VaccineRecipient implements Serializable { 
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -29,25 +27,25 @@ public class User implements Serializable {
 	@Column(nullable = false, length = 50, unique=true)
 	private String email;
 	
+	@Column(nullable = false, length = 50, unique=true)
+	private String phoneNumber;
+	
 	@Column(nullable = false, length = 11, unique=true)
-	private String numberCpf;
+	private Integer numberCpf;
 	
 	private Date birthDate;
 	
-	@OneToMany()
-	@JoinTable(name = "tb_user_vaccinationcontrol",
-	joinColumns = @JoinColumn(name = "user_id"),
-	inverseJoinColumns = @JoinColumn(name = "vaccinationcontrol_id"))
-	private Set<VaccinationControl> vaccinationControls = new HashSet<>();
-
-	public User() {
-		
+	@OneToMany(mappedBy = "vaccineRecipient")
+	private Set<VaccinationControl> vaccinationControl = new HashSet<>();
+	
+	public VaccineRecipient() {
 	}
 
-	public User(Long id, String name, String email, String numberCpf, Date birthDate) {
+	public VaccineRecipient(Long id, String name, String email, String phoneNumber, Integer numberCpf, Date birthDate) {
 		this.id = id;
 		this.name = name;
 		this.email = email;
+		this.phoneNumber = phoneNumber;
 		this.numberCpf = numberCpf;
 		this.birthDate = birthDate;
 	}
@@ -76,11 +74,19 @@ public class User implements Serializable {
 		this.email = email;
 	}
 
-	public String getNumberCpf() {
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	public Integer getNumberCpf() {
 		return numberCpf;
 	}
 
-	public void setNumberCpf(String numberCpf) {
+	public void setNumberCpf(Integer numberCpf) {
 		this.numberCpf = numberCpf;
 	}
 
@@ -92,8 +98,8 @@ public class User implements Serializable {
 		this.birthDate = birthDate;
 	}
 	
-	public Set<VaccinationControl> getVaccineApplicationControls() {
-		return vaccinationControls;
+	public Set<VaccinationControl> getVaccinationControl() {
+		return vaccinationControl;
 	}
 
 	@Override
@@ -112,7 +118,7 @@ public class User implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		User other = (User) obj;
+		VaccineRecipient other = (VaccineRecipient) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

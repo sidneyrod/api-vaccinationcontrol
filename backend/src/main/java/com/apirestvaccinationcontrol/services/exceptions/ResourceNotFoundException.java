@@ -1,4 +1,4 @@
-package com.challenge.vaccine.services.exceptions;
+package com.apirestvaccinationcontrol.services.exceptions;
 
 public class ResourceNotFoundException extends RuntimeException {
 	private static final long serialVersionUID = 1L;
@@ -7,3 +7,4 @@ public class ResourceNotFoundException extends RuntimeException {
 		super(msg);
 	}
 }
+

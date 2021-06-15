@@ -1,12 +1,28 @@
-insert into tb_user (birth_date, email, name, number_cpf) values ('1983-03-12 00:00:00', 'joaopaulo@gmail.com', 'João Paulo', '00100200304');
-insert into tb_user (birth_date, email, name, number_cpf) values ('1989-07-20 00:00:00', 'anamaria@gmail.com', 'Ana Maria', '00100200305');
+insert into tb_vaccineecipient (birth_date, email, name, phone_number, number_cpf) values ('1983-03-12 00:00:00', 'joaopaulo@gmail.com', 'João Paulo', '5511999876532', '00100200304');
+insert into tb_vaccineecipient (birth_date, email, name, phone_number, number_cpf) values ('1989-07-20 00:00:00', 'anamaria@gmail.com', 'Ana Maria', '5511999876533', '00100200305');
+insert into tb_vaccineecipient (birth_date, email, name, phone_number, number_cpf) values ('1975-05-14 00:00:00', 'marianasilva@gmail.com', 'Mariana Silva', '5511999876534', '00100200306');
+insert into tb_vaccineecipient (birth_date, email, name, phone_number, number_cpf) values ('1961-02-07 00:00:00', 'pedrooliveira@gmail.com', 'Pedro Oliveira', '5511999876535', '00100200307');
+insert into tb_vaccineecipient (birth_date, email, name, phone_number, number_cpf) values ('1965-01-21 00:00:00', 'antoniobarbosa@gmail.com', 'Antônio Barbosa', '5511999876536', '00100200308');
+insert into tb_vaccineecipient (birth_date, email, name, phone_number, number_cpf) values ('1992-11-07 00:00:00', 'jaquelinerocha@gmail.com', 'Jaqueline Rocha', '5511999876537', '00100200309');
+insert into tb_vaccineecipient (birth_date, email, name, phone_number, number_cpf) values ('1953-06-09 00:00:00', 'osvaldocastro@gmail.com', 'Osvaldo Castro', '5511999876538', '00100200310');
 
-insert into tb_vaccinationcontrol (user_email, vaccine_date, vaccine_name) values ('joaopaulo@gmail.com', '2021-02-01 00:00:00', 'Covid19Vaccine');
-insert into tb_vaccinationcontrol (user_email, vaccine_date, vaccine_name) values ('anamaria@gmail.com', '2021-02-02 00:00:00', 'H1N1Vaccine');
-insert into tb_vaccinationcontrol (user_email, vaccine_date, vaccine_name) values ('anamaria@gmail.com', '2021-02-02 00:00:00', 'Covid19Vaccine');
-insert into tb_vaccinationcontrol (user_email, vaccine_date, vaccine_name) values ('joaopaulo@gmail.com', '2021-02-01 00:00:00', 'H1N1Vaccine');
+insert into tb_vaccineregistration (name_vaccine) values ('Pfizer Vaccine Covid-19');
+insert into tb_vaccineregistration (name_vaccine) values ('Oxford Vaccine Covid-19');
+insert into tb_vaccineregistration (name_vaccine) values ('Sanofi Pasteur Vaccine H1N1');
 
-insert into tb_user_vaccinationcontrol (user_id, vaccinationcontrol_id) values (1, 1);
-insert into tb_user_vaccinationcontrol (user_id, vaccinationcontrol_id) values (1, 4);
-insert into tb_user_vaccinationcontrol (user_id, vaccinationcontrol_id) values (2, 2);
-insert into tb_user_vaccinationcontrol (user_id, vaccinationcontrol_id) values (2, 3);
+insert into tb_vaccinationcontrol (country_vaccination, number_dose, vaccine_application_date, vrecipient_id, vregistration_id, created) 
+values ('Brazil', 1, '2021-02-10 00:00:00', 4, 1, NOW());
+insert into tb_vaccinationcontrol (country_vaccination, number_dose, vaccine_application_date, vrecipient_id, vregistration_id, created) 
+values ('Brazil', 1, '2021-02-11 00:00:00', 7, 2, NOW());
+insert into tb_vaccinationcontrol (country_vaccination, number_dose, vaccine_application_date, vrecipient_id, vregistration_id, created) 
+values ('Brazil', 1, '2021-02-12 00:00:00', 6, 2, NOW());
+insert into tb_vaccinationcontrol (country_vaccination, number_dose, vaccine_application_date, vrecipient_id, vregistration_id, created) 
+values ('Brazil', 1, '2021-02-15 00:00:00', 1, 1, NOW());
+insert into tb_vaccinationcontrol (country_vaccination, number_dose, vaccine_application_date, vrecipient_id, vregistration_id, created) 
+values ('Brazil', 1, '2021-02-16 00:00:00', 5, 3, NOW());
+insert into tb_vaccinationcontrol (country_vaccination, number_dose, vaccine_application_date, vrecipient_id, vregistration_id, created) 
+values ('Brazil', 1, '2021-02-17 00:00:00', 2, 1, NOW());
+insert into tb_vaccinationcontrol (country_vaccination, number_dose, vaccine_application_date, vrecipient_id, vregistration_id, created) 
+values ('Brazil', 1, '2021-02-18 00:00:00', 3, 3, NOW());
+insert into tb_vaccinationcontrol (country_vaccination, number_dose, vaccine_application_date, vrecipient_id, vregistration_id, created) 
+values ('Brazil', 2, '2021-05-10 00:00:00', 7, 2, NOW());

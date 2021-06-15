@@ -1,9 +1,9 @@
-package com.challenge.vaccine.repositories;
+package com.apirestvaccinationcontrol.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.challenge.vaccine.entities.VaccinationControl;
+import com.apirestvaccinationcontrol.entities.VaccinationControl;
 
 @Repository
 public interface VaccinationControlRepository extends JpaRepository<VaccinationControl, Long> {
