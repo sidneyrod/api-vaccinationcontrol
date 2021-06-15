@@ -31,4 +31,16 @@ public class VaccineRegistrationService {
 		VaccineRegistration entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entity " + id + " not found"));
 		return new VaccineRegistrationDTO(entity);
 	}
+
+	@Transactional
+	public VaccineRegistrationDTO insert(VaccineRegistrationDTO dto) {
+		VaccineRegistration entity = new VaccineRegistration();
+		entity.setNameVaccine(dto.getNameVaccine());
+		repository.save(entity);
+		return new VaccineRegistrationDTO(entity);
+		
+		
+	}
+	
+	
 }
