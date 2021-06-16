@@ -36,7 +36,19 @@ public class ResourceExceptionHandler {
 		StandardError err = new StandardError();
 		err.setTimestamp(Instant.now());
 		err.setStatus(status.value());
-		err.setError("Database error");
+		err.setError("Database exception");
+		err.setMessage(e.getMessage());
+		err.setPath(request.getRequestURI());
+		return ResponseEntity.status(status).body(err);
+	}
+	
+	@ExceptionHandler(IllegalArgumentException.class)
+	public ResponseEntity<StandardError> illegalArgument(IllegalArgumentException e, HttpServletRequest request) {
+		HttpStatus status = HttpStatus.BAD_REQUEST;
+		StandardError err = new StandardError();
+		err.setTimestamp(Instant.now());
+		err.setStatus(status.value());
+		err.setError("Bad request");
 		err.setMessage(e.getMessage());
 		err.setPath(request.getRequestURI());
 		return ResponseEntity.status(status).body(err);
@@ -56,18 +68,6 @@ public class ResourceExceptionHandler {
 			err.addError(f.getField(), f.getDefaultMessage());
 		}
 
-		return ResponseEntity.status(status).body(err);
-	}
-
-	@ExceptionHandler(IllegalArgumentException.class)
-	public ResponseEntity<StandardError> illegalArgument(IllegalArgumentException e, HttpServletRequest request) {
-		HttpStatus status = HttpStatus.BAD_REQUEST;
-		StandardError err = new StandardError();
-		err.setTimestamp(Instant.now());
-		err.setStatus(status.value());
-		err.setError("Bad request");
-		err.setMessage(e.getMessage());
-		err.setPath(request.getRequestURI());
 		return ResponseEntity.status(status).body(err);
 	}
 }
