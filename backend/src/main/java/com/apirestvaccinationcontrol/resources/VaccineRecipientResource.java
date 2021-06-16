@@ -15,37 +15,37 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.apirestvaccinationcontrol.entities.VaccineRegistration;
-import com.apirestvaccinationcontrol.services.VaccineRegistrationService;
+import com.apirestvaccinationcontrol.entities.VaccineRecipient;
+import com.apirestvaccinationcontrol.services.VaccineRecipientService;
 
 @RestController
-@RequestMapping(value = "/vaccines")
-public class VaccineRegistrationResource {
+@RequestMapping(value = "/recipient")
+public class VaccineRecipientResource {
 	
 	@Autowired
-	private VaccineRegistrationService service;
+	private VaccineRecipientService service;
 	
 	@GetMapping
-	public ResponseEntity<List<VaccineRegistration>> findAll() {
-		List<VaccineRegistration> list = service.findAll();
+	public ResponseEntity<List<VaccineRecipient>> findAll() {
+		List<VaccineRecipient> list = service.findAll();
 		return ResponseEntity.ok().body(list);
 	}
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<VaccineRegistration> findById(@PathVariable Long id) {
-		VaccineRegistration entity = service.findById(id);
+	public ResponseEntity<VaccineRecipient> findById(@PathVariable Long id) {
+		VaccineRecipient entity = service.findById(id);
 		return ResponseEntity.ok().body(entity);
 	}
 	
 	@PostMapping
-	public ResponseEntity<VaccineRegistration> insert(@RequestBody VaccineRegistration entity) {
+	public ResponseEntity<VaccineRecipient> insert(@RequestBody VaccineRecipient entity) {
 		entity = service.insert(entity);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(entity.getId()).toUri();
 		return ResponseEntity.created(uri).body(entity);
 	}
 	
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<VaccineRegistration> update(@RequestBody VaccineRegistration entity) {
+	public ResponseEntity<VaccineRecipient> update(@RequestBody VaccineRecipient entity) {
 		entity = service.update(entity);
 		return ResponseEntity.ok().body(entity);
 	}

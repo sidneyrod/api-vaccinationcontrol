@@ -5,6 +5,7 @@ import java.time.Instant;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,6 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "tb_vaccinationcontrol")
@@ -27,13 +30,15 @@ public class VaccinationControl implements Serializable {
 	private Integer numberDose;
 	private Instant vaccineApplicationDate;
 	
-	@ManyToOne
-	@JoinColumn(name = "vrecipient_id")
-	private VaccineRecipient vaccineRecipient;
+	@JsonIgnore
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "recipient_id")
+	private VaccineRecipient recipient;
 	
-	@ManyToOne
-	@JoinColumn(name = "vregistration_id")
-	private VaccineRegistration vaccineRegistration;
+	@JsonIgnore
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "registration_id")
+	private VaccineRegistration registration;
 	
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private Instant created;
@@ -45,16 +50,14 @@ public class VaccinationControl implements Serializable {
 	}
 	
 	public VaccinationControl(Long id, String countryVaccination, Integer numberDose, Instant vaccineApplicationDate,
-			VaccineRecipient vaccineRecipient, VaccineRegistration vaccineRegistration) {
+			VaccineRecipient recipient, VaccineRegistration registration) {
 		this.id = id;
 		this.countryVaccination = countryVaccination;
 		this.numberDose = numberDose;
 		this.vaccineApplicationDate = vaccineApplicationDate;
-		this.vaccineRecipient = vaccineRecipient;
-		this.vaccineRegistration = vaccineRegistration;
+		this.recipient = recipient;
+		this.registration = registration;
 	}
-
-
 
 	public Long getId() {
 		return id;
@@ -88,20 +91,20 @@ public class VaccinationControl implements Serializable {
 		this.vaccineApplicationDate = vaccineApplicationDate;
 	}
 
-	public VaccineRecipient getVaccineRecipient() {
-		return vaccineRecipient;
+	public VaccineRecipient getRecipient() {
+		return recipient;
 	}
 
-	public void setVaccineRecipient(VaccineRecipient vaccineRecipient) {
-		this.vaccineRecipient = vaccineRecipient;
+	public void setRecipient(VaccineRecipient recipient) {
+		this.recipient = recipient;
 	}
 
-	public VaccineRegistration getVaccineRegistration() {
-		return vaccineRegistration;
+	public VaccineRegistration getRegistration() {
+		return registration;
 	}
 
-	public void setVaccineRegistration(VaccineRegistration vaccineRegistration) {
-		this.vaccineRegistration = vaccineRegistration;
+	public void setRegistration(VaccineRegistration registration) {
+		this.registration = registration;
 	}
 
 	@PrePersist

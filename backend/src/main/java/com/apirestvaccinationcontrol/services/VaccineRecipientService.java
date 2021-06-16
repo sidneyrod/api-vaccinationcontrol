@@ -11,38 +11,38 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.apirestvaccinationcontrol.entities.VaccineRegistration;
-import com.apirestvaccinationcontrol.repositories.VaccineRegistrationRepository;
+import com.apirestvaccinationcontrol.entities.VaccineRecipient;
+import com.apirestvaccinationcontrol.repositories.VaccineRecipientRepository;
 import com.apirestvaccinationcontrol.services.exceptions.DatabaseException;
 import com.apirestvaccinationcontrol.services.exceptions.ResourceNotFoundException;
 
 @Service
-public class VaccineRegistrationService {
+public class VaccineRecipientService {
 
 	@Autowired
-	private VaccineRegistrationRepository repository;
+	private VaccineRecipientRepository repository;
 
 	@Transactional(readOnly = true)
-	public List<VaccineRegistration> findAll() {
-		List<VaccineRegistration> list = repository.findAll();
+	public List<VaccineRecipient> findAll() {
+		List<VaccineRecipient> list = repository.findAll();
 		return list;
 	}
 
 	@Transactional(readOnly = true)
-	public VaccineRegistration findById(Long id) {
-		Optional<VaccineRegistration> obj = repository.findById(id);
-		VaccineRegistration entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entity " + id + " not found"));
+	public VaccineRecipient findById(Long id) {
+		Optional<VaccineRecipient> obj = repository.findById(id);
+		VaccineRecipient entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entity " + id + " not found"));
 		return entity;
 	}
 
 	@Transactional
-	public VaccineRegistration insert(VaccineRegistration entity) {
+	public VaccineRecipient insert(VaccineRecipient entity) {
 		entity = repository.save(entity);
 		return entity;
 	}
 
 	@Transactional
-	public VaccineRegistration update(VaccineRegistration entity) {
+	public VaccineRecipient update(VaccineRecipient entity) {
 		try {
 			repository.save(entity);
 			return entity;

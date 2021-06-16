@@ -1,9 +1,9 @@
 package com.apirestvaccinationcontrol.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,21 +27,21 @@ public class VaccineRecipient implements Serializable {
 	@Column(nullable = false, length = 50, unique=true)
 	private String email;
 	
-	@Column(nullable = false, length = 50, unique=true)
+	@Column(nullable = false, length = 20, unique=true)
 	private String phoneNumber;
 	
 	@Column(nullable = false, length = 11, unique=true)
-	private Integer numberCpf;
+	private Long numberCpf;
 	
 	private Date birthDate;
 	
-	@OneToMany(mappedBy = "vaccineRecipient")
-	private Set<VaccinationControl> vaccinationControl = new HashSet<>();
+	@OneToMany(mappedBy = "recipient")
+	private List<VaccinationControl> vaccinationControl = new ArrayList<>();
 	
 	public VaccineRecipient() {
 	}
 
-	public VaccineRecipient(Long id, String name, String email, String phoneNumber, Integer numberCpf, Date birthDate) {
+	public VaccineRecipient(Long id, String name, String email, String phoneNumber, Long numberCpf, Date birthDate) {
 		this.id = id;
 		this.name = name;
 		this.email = email;
@@ -49,7 +49,7 @@ public class VaccineRecipient implements Serializable {
 		this.numberCpf = numberCpf;
 		this.birthDate = birthDate;
 	}
-
+	
 	public Long getId() {
 		return id;
 	}
@@ -82,11 +82,11 @@ public class VaccineRecipient implements Serializable {
 		this.phoneNumber = phoneNumber;
 	}
 
-	public Integer getNumberCpf() {
+	public Long getNumberCpf() {
 		return numberCpf;
 	}
 
-	public void setNumberCpf(Integer numberCpf) {
+	public void setNumberCpf(Long numberCpf) {
 		this.numberCpf = numberCpf;
 	}
 
@@ -98,7 +98,7 @@ public class VaccineRecipient implements Serializable {
 		this.birthDate = birthDate;
 	}
 	
-	public Set<VaccinationControl> getVaccinationControl() {
+	public List<VaccinationControl> getVaccinationControl() {
 		return vaccinationControl;
 	}
 
