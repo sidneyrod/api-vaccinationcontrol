@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import javax.persistence.EntityNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,7 +30,8 @@ public class VaccineRegistrationService {
 	@Transactional(readOnly = true)
 	public VaccineRegistrationDTO findById(Long id) {
 		Optional<VaccineRegistration> obj = repository.findById(id);
-		VaccineRegistration entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entity " + id + " not found"));
+		VaccineRegistration entity = obj
+				.orElseThrow(() -> new ResourceNotFoundException("Entity " + id + " not found"));
 		return new VaccineRegistrationDTO(entity);
 	}
 
@@ -36,11 +39,20 @@ public class VaccineRegistrationService {
 	public VaccineRegistrationDTO insert(VaccineRegistrationDTO dto) {
 		VaccineRegistration entity = new VaccineRegistration();
 		entity.setNameVaccine(dto.getNameVaccine());
-		repository.save(entity);
+		entity = repository.save(entity);
 		return new VaccineRegistrationDTO(entity);
-		
-		
 	}
-	
-	
+
+	@Transactional
+	public VaccineRegistrationDTO update(Long id, VaccineRegistrationDTO dto) {
+		try {
+			VaccineRegistration entity = repository.getOne(id);
+			entity.setNameVaccine(dto.getNameVaccine());
+			entity = repository.save(entity);
+			return new VaccineRegistrationDTO(entity);
+		} 
+		 catch (EntityNotFoundException e) {
+			throw new ResourceNotFoundException("Entity " + id + " not found");
+		}
+	}
 }
