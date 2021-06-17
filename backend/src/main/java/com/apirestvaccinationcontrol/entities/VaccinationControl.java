@@ -5,7 +5,6 @@ import java.time.Instant;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,30 +14,21 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
 @Table(name = "tb_vaccinationcontrol")
-public class VaccinationControl implements Serializable {
+public class VaccinationControl implements Serializable { 
 	private static final long serialVersionUID = 1L;
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	private String countryVaccination;
+	
 	private Integer numberDose;
+	
+	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private Instant vaccineApplicationDate;
-	
-	@JsonIgnore
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "recipient_id")
-	private VaccineRecipient recipient;
-	
-	@JsonIgnore
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "registration_id")
-	private VaccineRegistration registration;
 	
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private Instant created;
@@ -46,17 +36,18 @@ public class VaccinationControl implements Serializable {
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private Instant updated;
 
+	@ManyToOne
+	@JoinColumn(name = "vaccine_id")
+	private VaccineRegistration registration;
+
 	public VaccinationControl() {
 	}
-	
-	public VaccinationControl(Long id, String countryVaccination, Integer numberDose, Instant vaccineApplicationDate,
-			VaccineRecipient recipient, VaccineRegistration registration) {
+
+	public VaccinationControl(Long id, String countryVaccination, Integer numberDose, Instant vaccineApplicationDate) {
 		this.id = id;
 		this.countryVaccination = countryVaccination;
 		this.numberDose = numberDose;
 		this.vaccineApplicationDate = vaccineApplicationDate;
-		this.recipient = recipient;
-		this.registration = registration;
 	}
 
 	public Long getId() {
@@ -90,15 +81,7 @@ public class VaccinationControl implements Serializable {
 	public void setVaccineApplicationDate(Instant vaccineApplicationDate) {
 		this.vaccineApplicationDate = vaccineApplicationDate;
 	}
-
-	public VaccineRecipient getRecipient() {
-		return recipient;
-	}
-
-	public void setRecipient(VaccineRecipient recipient) {
-		this.recipient = recipient;
-	}
-
+	
 	public VaccineRegistration getRegistration() {
 		return registration;
 	}

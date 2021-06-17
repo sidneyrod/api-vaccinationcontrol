@@ -1,32 +1,27 @@
 package com.apirestvaccinationcontrol.entities;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "tb_vaccineregistration")
-public class VaccineRegistration implements Serializable {
+@Table(name = "tb_registration")
+public class VaccineRegistration implements Serializable { 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String nameVaccine;
 	
-	@OneToMany(mappedBy = "registration")
-	private List<VaccinationControl> vaccinationControl = new ArrayList<>();
+	private String nameVaccine;
 	
 	public VaccineRegistration() {
 	}
-	
+
 	public VaccineRegistration(Long id, String nameVaccine) {
 		this.id = id;
 		this.nameVaccine = nameVaccine;
@@ -47,7 +42,7 @@ public class VaccineRegistration implements Serializable {
 	public void setNameVaccine(String nameVaccine) {
 		this.nameVaccine = nameVaccine;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
