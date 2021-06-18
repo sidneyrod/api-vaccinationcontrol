@@ -2,17 +2,12 @@ package com.apirestvaccinationcontrol.entities;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -36,12 +31,6 @@ public class Recipient implements Serializable {
 	private Long numberCpf;
 
 	private Date birthDate;
-
-	@OneToMany
-	@JoinTable(name = "tb_recipient_control", 
-		joinColumns = @JoinColumn(name = "recipient_id"),
-		inverseJoinColumns = @JoinColumn(name = "control_id"))
-	private Set<VaccinationControl> vaccinationControl = new HashSet<>();
 
 	public Recipient() {
 	}
@@ -102,10 +91,6 @@ public class Recipient implements Serializable {
 
 	public void setBirthDate(Date birthDate) {
 		this.birthDate = birthDate;
-	}
-
-	public Set<VaccinationControl> getVaccinationControl() {
-		return vaccinationControl;
 	}
 
 	@Override

@@ -2,6 +2,8 @@ package com.apirestvaccinationcontrol.entities;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,7 +11,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -36,9 +39,17 @@ public class VaccinationControl implements Serializable {
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private Instant updated;
 
-	@ManyToOne
-	@JoinColumn(name = "vaccine_id")
-	private VaccineRegistration registration;
+	@ManyToMany
+	@JoinTable(name = "tb_control_recipient", 
+		joinColumns = @JoinColumn(name = "control_id"),
+		inverseJoinColumns = @JoinColumn(name = "recipient_id"))
+	private List<Recipient> recipients = new ArrayList<>();
+	
+	@ManyToMany
+	@JoinTable(name = "tb_control_vaccine", 
+		joinColumns = @JoinColumn(name = "control_id"),
+		inverseJoinColumns = @JoinColumn(name = "vaccine_id"))
+	private List<VaccineRegistration> vaccines = new ArrayList<>(); 
 
 	public VaccinationControl() {
 	}
@@ -82,12 +93,12 @@ public class VaccinationControl implements Serializable {
 		this.vaccineApplicationDate = vaccineApplicationDate;
 	}
 	
-	public VaccineRegistration getRegistration() {
-		return registration;
+	public List<Recipient> getRecipients() {
+		return recipients;
 	}
 
-	public void setRegistration(VaccineRegistration registration) {
-		this.registration = registration;
+	public List<VaccineRegistration> getVaccines() {
+		return vaccines;
 	}
 
 	@PrePersist
