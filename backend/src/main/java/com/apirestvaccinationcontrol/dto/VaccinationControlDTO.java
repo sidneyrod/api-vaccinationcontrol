@@ -22,11 +22,9 @@ public class VaccinationControlDTO implements Serializable {
 	private String countryVaccination;
 	
 	@NotNull(message = "The dose amount must not be empty")
-	@NotBlank(message = "Enter the dose amount")
 	private Integer numberDose;
 	
 	@NotNull(message = "The date of vaccine application must not be empty")
-	@NotBlank(message = "Enter the date of vaccine application")
 	private Instant vaccineApplicationDate;
 	
 	private List<RecipientDTO> recipients = new ArrayList<>();

@@ -30,7 +30,6 @@ public class RecipientDTO implements Serializable {
 	private Long numberCpf;
 	
 	@NotNull(message = "The birthdate must not be empty")
-	@NotBlank(message = "Enter the birthdate of the recipient")
 	private Date birthDate;
 
 	public RecipientDTO() {
