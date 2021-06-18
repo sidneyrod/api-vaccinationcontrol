@@ -3,6 +3,7 @@ package com.apirestvaccinationcontrol.dto;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -22,11 +23,10 @@ public class RecipientDTO implements Serializable {
 	private String email;
 	
 	@NotNull(message = "The phone number must not be empty")
-	@NotBlank(message = "Enter the phone number of the recipient")
 	private Long phoneNumber;
 	
 	@NotNull(message = "The number CPF must not be empty")
-	@NotBlank(message = "Enter the number CPF of the recipient")
+	@Digits(integer = 11, fraction = 0, message = "Enter the number CPF of the recipient")
 	private Long numberCpf;
 	
 	@NotNull(message = "The birthdate must not be empty")
