@@ -1,5 +1,41 @@
 [![NPM](https://img.shields.io/npm/l/react)](https://github.com/sidneyrod/first-challenge/blob/main/LICENSE)
 
-# About Project
+# # About Project
 
-This API will be created to control the application of vaccines among the Brazilian population, which will have a user registry to receive mandatory data, such as 'name', 'e-mail', 'CPF' and 'date of birth'. You will also have a vaccine application register, receiving the mandatory data, such as the name of the vaccine, the user's email and the date to which it was applied.
+This API will be created to control the application of vaccines in the Brazilian population, which will have user registration to receive mandatory data, such as 'name', 'e-mail', 'CPF' and 'date of birth', a registration to register the vaccines available. It will also have a record of application of the vaccine, receiving mandatory data, such as the country of vaccination, amount of dose, application date, receiving the user and the vaccine.
+
+## Technologies used
+### Backend
+- Java 11
+- Spring Boot
+- JPA / Hibernate
+- Maven
+- Postgres
+- Heroku
+- Swagger
+
+## Api Link in the Cloud
+<p className="text-light"><a href="https://apirest-vaccinationcontrol.herokuapp.com/swagger-ui.html" 
+target="_blank" rel="noreferrer">SWAGGER - API REST</a></p>
+
+
+#  How to run the project
+
+### Backend
+Prerequisite: Java 11
+
+```bash
+# clone repository
+git clone git@github.com:sidneyrod/first-challenge.git
+
+# enter back end project folder
+cd backend
+
+# run the project
+./mvnw spring-boot:run
+```
+
+## Autor
+
+<p className="text-light">Realizado por <a href="https://github.com/sidneyrod" 
+target="_blank" rel="noreferrer">Sidney Rodrigues</a></p>
