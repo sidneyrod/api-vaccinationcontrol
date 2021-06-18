@@ -5,6 +5,9 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 import com.apirestvaccinationcontrol.entities.Recipient;
 import com.apirestvaccinationcontrol.entities.VaccinationControl;
 import com.apirestvaccinationcontrol.entities.VaccineRegistration;
@@ -13,8 +16,17 @@ public class VaccinationControlDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Long id;
+	
+	@NotNull(message = "The country must not be empty")
+	@NotBlank(message = "Enter the country of vaccination")
 	private String countryVaccination;
+	
+	@NotNull(message = "The dose amount must not be empty")
+	@NotBlank(message = "Enter the dose amount")
 	private Integer numberDose;
+	
+	@NotNull(message = "The date of vaccine application must not be empty")
+	@NotBlank(message = "Enter the date of vaccine application")
 	private Instant vaccineApplicationDate;
 	
 	private List<RecipientDTO> recipients = new ArrayList<>();

@@ -3,16 +3,34 @@ package com.apirestvaccinationcontrol.dto;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 import com.apirestvaccinationcontrol.entities.Recipient;
 
 public class RecipientDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Long id;
+	
+	@NotNull(message = "The name must not be empty")
+	@NotBlank(message = "Enter the name of the recipient")
 	private String name;
+	
+	@Email(message = "Enter a valid email address")
 	private String email;
+	
+	@NotNull(message = "The phone number must not be empty")
+	@NotBlank(message = "Enter the phone number of the recipient")
 	private Long phoneNumber;
+	
+	@NotNull(message = "The number CPF must not be empty")
+	@NotBlank(message = "Enter the number CPF of the recipient")
 	private Long numberCpf;
+	
+	@NotNull(message = "The birthdate must not be empty")
+	@NotBlank(message = "Enter the birthdate of the recipient")
 	private Date birthDate;
 
 	public RecipientDTO() {

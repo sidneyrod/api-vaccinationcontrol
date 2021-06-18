@@ -2,6 +2,9 @@ package com.apirestvaccinationcontrol.dto;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 import com.apirestvaccinationcontrol.entities.VaccineRegistration;
 
 public class VaccineRegistrationDTO implements Serializable { 
@@ -9,8 +12,8 @@ public class VaccineRegistrationDTO implements Serializable {
 
 	private Long id;
 	
-	//@NotNull
-	//@NotBlank(message = "Enter the name of the vaccine")
+	@NotNull(message = "The vaccine name must not be empty")
+	@NotBlank(message = "Enter the name of the vaccine")
 	private String nameVaccine;
 	
 	public VaccineRegistrationDTO() {
