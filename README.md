@@ -2,7 +2,7 @@
 
 # # About Project
 
-API created to control the application of vaccines in the Brazilian population, which will have user registration to receive mandatory data, such as 'name', 'e-mail', 'CPF' and 'date of birth', a registration to register the vaccines available. It will also have a record of application of the vaccine, receiving mandatory data, such as the country of vaccination, amount of dose, application date, receiving the user and the vaccine.
+API created to control vaccine application in the Brazilian population, which will have user registration to receive mandatory data, such as 'name', 'e-mail', 'CPF' and 'date of birth', a registration to register the vaccines available. It will also have a record of application of the vaccine, receiving mandatory data, such as the country of vaccination, amount of dose, application date, receiving the user and the vaccine.
 
 ## Technologies used
 ### Backend
