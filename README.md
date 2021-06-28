@@ -38,7 +38,7 @@ cd backend
 ./mvnw spring-boot:run
 ```
 
-## Autor
+## Author
 
 <p className="text-light">Realizado por <a href="https://github.com/sidneyrod" 
 target="_blank" rel="noreferrer">Sidney Rodrigues</a></p>
