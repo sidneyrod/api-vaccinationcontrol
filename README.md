@@ -4,6 +4,9 @@
 
 API created to control vaccine application in the Brazilian population, which will have user registration to receive mandatory data, such as 'name', 'e-mail', 'CPF' and 'birthdate', a registration to register the vaccines available. It will also have a record of application of the vaccine, receiving mandatory data, such as the country of vaccination, amount of dose, application date, receiving the user and the vaccine.
 
+## Conceptual model
+![Conceptual model](https://github.com/sidneyrod/assets/blob/main/others/vaccinationcontrol_model.png)
+
 ## Technologies used
 ### Backend
 - Java 11
@@ -35,7 +38,7 @@ cd backend
 ./mvnw spring-boot:run
 ```
 
-## Autor
+## Author
 
-<p className="text-light">Realizado por <a href="https://github.com/sidneyrod" 
+<p className="text-light">Developed by <a href="https://github.com/sidneyrod" 
 target="_blank" rel="noreferrer">Sidney Rodrigues</a></p>
