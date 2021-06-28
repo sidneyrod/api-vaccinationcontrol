@@ -40,5 +40,5 @@ cd backend
 
 ## Author
 
-<p className="text-light">Realizado por <a href="https://github.com/sidneyrod" 
+<p className="text-light">Developed by <a href="https://github.com/sidneyrod" 
 target="_blank" rel="noreferrer">Sidney Rodrigues</a></p>
