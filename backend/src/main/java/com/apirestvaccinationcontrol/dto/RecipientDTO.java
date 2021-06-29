@@ -3,7 +3,6 @@ package com.apirestvaccinationcontrol.dto;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.validation.constraints.Digits;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -23,11 +22,10 @@ public class RecipientDTO implements Serializable {
 	private String email;
 	
 	@NotNull(message = "The phone number must not be empty")
-	private Long phoneNumber;
+	private String phoneNumber;
 	
 	@NotNull(message = "The number CPF must not be empty")
-	@Digits(integer = 11, fraction = 0, message = "Enter the number CPF of the recipient")
-	private Long numberCpf;
+	private String numberCpf;
 	
 	@NotNull(message = "The birthdate must not be empty")
 	private Date birthDate;
@@ -35,7 +33,7 @@ public class RecipientDTO implements Serializable {
 	public RecipientDTO() {
 	}
 
-	public RecipientDTO(Long id, String name, String email, Long phoneNumber, Long numberCpf, Date birthDate) {
+	public RecipientDTO(Long id, String name, String email, String phoneNumber, String numberCpf, Date birthDate) {
 		this.id = id;
 		this.name = name;
 		this.email = email;
@@ -77,19 +75,19 @@ public class RecipientDTO implements Serializable {
 		this.email = email;
 	}
 
-	public Long getPhoneNumber() {
+	public String getPhoneNumber() {
 		return phoneNumber;
 	}
 
-	public void setPhoneNumber(Long phoneNumber) {
+	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 
-	public Long getNumberCpf() {
+	public String getNumberCpf() {
 		return numberCpf;
 	}
 
-	public void setNumberCpf(Long numberCpf) {
+	public void setNumberCpf(String numberCpf) {
 		this.numberCpf = numberCpf;
 	}
 

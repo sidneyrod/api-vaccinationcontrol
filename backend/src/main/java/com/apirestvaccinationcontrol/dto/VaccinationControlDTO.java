@@ -34,7 +34,6 @@ public class VaccinationControlDTO implements Serializable {
 	public VaccinationControlDTO() {
 	}
 	
-
 	public VaccinationControlDTO(Long id, String countryVaccination, Integer numberDose, Instant vaccineApplicationDate) {
 		this.id = id;
 		this.countryVaccination = countryVaccination;

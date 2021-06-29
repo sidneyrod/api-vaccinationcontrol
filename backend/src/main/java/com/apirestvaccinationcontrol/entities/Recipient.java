@@ -25,17 +25,17 @@ public class Recipient implements Serializable {
 	private String email;
 
 	@Column(length = 20, unique = true)
-	private Long phoneNumber;
+	private String phoneNumber;
 
 	@Column(nullable = false, length = 11, unique = true)
-	private Long numberCpf;
+	private String numberCpf;
 
 	private Date birthDate;
 
 	public Recipient() {
 	}
 
-	public Recipient(Long id, String name, String email, Long phoneNumber, Long numberCpf, Date birthDate) {
+	public Recipient(Long id, String name, String email, String phoneNumber, String numberCpf, Date birthDate) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -69,19 +69,19 @@ public class Recipient implements Serializable {
 		this.email = email;
 	}
 
-	public Long getPhoneNumber() {
+	public String getPhoneNumber() {
 		return phoneNumber;
 	}
 
-	public void setPhoneNumber(Long phoneNumber) {
+	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 
-	public Long getNumberCpf() {
+	public String getNumberCpf() {
 		return numberCpf;
 	}
 
-	public void setNumberCpf(Long numberCpf) {
+	public void setNumberCpf(String numberCpf) {
 		this.numberCpf = numberCpf;
 	}
 
