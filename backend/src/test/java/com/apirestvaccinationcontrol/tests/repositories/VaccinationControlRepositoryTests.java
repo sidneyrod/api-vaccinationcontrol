@@ -21,25 +21,25 @@ public class VaccinationControlRepositoryTests {
 	
 	private long existingId;
 	private long nonExistingId;
-	private long countTotalVaccines;
+	private long countTotalVaccinationControl;
 	
 	@BeforeEach
 	void setUp() throws Exception {
 		existingId = 1L;
 		nonExistingId = 1000L;
-		countTotalVaccines = 8L;
+		countTotalVaccinationControl = 8L;
 	}
 	
 	@Test
 	public void saveShouldPersistWithAutoincrementWhenIdIsNull() {
-		VaccinationControl recipient = VaccinationControlFactory.createVaccinationControl();
-		recipient.setId(null);
-		recipient = repository.save(recipient);
-		Optional<VaccinationControl> result = repository.findById(recipient.getId());
-		Assertions.assertNotNull(recipient.getId());
-		Assertions.assertEquals(countTotalVaccines + 1L, recipient.getId());
+		VaccinationControl control = VaccinationControlFactory.createVaccinationControl();
+		control.setId(null);
+		control = repository.save(control);
+		Optional<VaccinationControl> result = repository.findById(control.getId());
+		Assertions.assertNotNull(control.getId());
+		Assertions.assertEquals(countTotalVaccinationControl + 1L, control.getId());
 		Assertions.assertTrue(result.isPresent());
-		Assertions.assertSame(result.get(), recipient);
+		Assertions.assertSame(result.get(), control);
 	}
 
 	@Test

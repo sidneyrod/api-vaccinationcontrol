@@ -21,13 +21,13 @@ public class RecipientRepositoryTests {
 	
 	private long existingId;
 	private long nonExistingId;
-	private long countTotalVaccines;
+	private long countTotalRecipients;
 	
 	@BeforeEach
 	void setUp() throws Exception {
 		existingId = 1L;
 		nonExistingId = 1000L;
-		countTotalVaccines = 7L;
+		countTotalRecipients = 7L;
 	}
 	
 	@Test
@@ -37,7 +37,7 @@ public class RecipientRepositoryTests {
 		recipient = repository.save(recipient);
 		Optional<Recipient> result = repository.findById(recipient.getId());
 		Assertions.assertNotNull(recipient.getId());
-		Assertions.assertEquals(countTotalVaccines + 1L, recipient.getId());
+		Assertions.assertEquals(countTotalRecipients + 1L, recipient.getId());
 		Assertions.assertTrue(result.isPresent());
 		Assertions.assertSame(result.get(), recipient);
 	}
