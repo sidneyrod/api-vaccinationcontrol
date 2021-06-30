@@ -1,10 +1,10 @@
-package com.challenge.vaccine;
+package com.apirestvaccinationcontrol;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class VaccineApplicationTests {
+class VaccinationControlApplicationTests {
 
 	@Test
 	void contextLoads() {
