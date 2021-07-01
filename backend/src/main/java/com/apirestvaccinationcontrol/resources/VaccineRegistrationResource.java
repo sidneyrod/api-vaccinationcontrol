@@ -57,5 +57,4 @@ public class VaccineRegistrationResource {
 		service.delete(id);
 		return ResponseEntity.noContent().build();
 	}
-	
 }
