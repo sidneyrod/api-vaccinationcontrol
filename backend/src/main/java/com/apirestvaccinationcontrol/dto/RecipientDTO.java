@@ -1,7 +1,7 @@
 package com.apirestvaccinationcontrol.dto;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.Instant;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -27,13 +27,12 @@ public class RecipientDTO implements Serializable {
 	@NotNull(message = "The number CPF must not be empty")
 	private String numberCpf;
 	
-	@NotNull(message = "The birthdate must not be empty")
-	private Date birthDate;
+	private Instant birthDate;
 
 	public RecipientDTO() {
 	}
 
-	public RecipientDTO(Long id, String name, String email, String phoneNumber, String numberCpf, Date birthDate) {
+	public RecipientDTO(Long id, String name, String email, String phoneNumber, String numberCpf, Instant birthDate) {
 		this.id = id;
 		this.name = name;
 		this.email = email;
@@ -91,11 +90,11 @@ public class RecipientDTO implements Serializable {
 		this.numberCpf = numberCpf;
 	}
 
-	public Date getBirthDate() {
+	public Instant getBirthDate() {
 		return birthDate;
 	}
 
-	public void setBirthDate(Date birthDate) {
+	public void setBirthDate(Instant birthDate) {
 		this.birthDate = birthDate;
 	}
 }

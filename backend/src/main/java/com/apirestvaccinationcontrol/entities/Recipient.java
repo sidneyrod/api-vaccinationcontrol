@@ -1,7 +1,7 @@
 package com.apirestvaccinationcontrol.entities;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.Instant;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,12 +30,12 @@ public class Recipient implements Serializable {
 	@Column(nullable = false, length = 11, unique = true)
 	private String numberCpf;
 
-	private Date birthDate;
+	private Instant birthDate;
 
 	public Recipient() {
 	}
 
-	public Recipient(Long id, String name, String email, String phoneNumber, String numberCpf, Date birthDate) {
+	public Recipient(Long id, String name, String email, String phoneNumber, String numberCpf, Instant birthDate) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -85,11 +85,11 @@ public class Recipient implements Serializable {
 		this.numberCpf = numberCpf;
 	}
 
-	public Date getBirthDate() {
+	public Instant getBirthDate() {
 		return birthDate;
 	}
 
-	public void setBirthDate(Date birthDate) {
+	public void setBirthDate(Instant birthDate) {
 		this.birthDate = birthDate;
 	}
 
