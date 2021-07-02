@@ -16,6 +16,7 @@ API created to control vaccine application in the Brazilian population, which wi
 - Postgres
 - Heroku
 - Swagger
+- JUnit/Mockito
 
 ## Api Link in the Cloud
 <p className="text-light"><a href="https://apirest-vaccinationcontrol.herokuapp.com/swagger-ui.html" 
