@@ -12,4 +12,10 @@ public class RecipientFactory {
 	public static RecipientDTO createRecipientDTO() {
 		return new RecipientDTO(createRecipient());
 	}
+	
+	public static RecipientDTO createRecipientDTO(Long id) {
+		RecipientDTO dto = createRecipientDTO();
+		dto.setId(id);
+		return dto;
+	}
 }

@@ -11,8 +11,8 @@ public class VaccinationControlFactory {
 	
 	public static VaccinationControl createVaccinationControl() {
 		VaccinationControl control = new VaccinationControl(1L, "Brazil", 1, Instant.now());
-		control.getRecipients().add(new Recipient(1L, null, null, null, null, null));
-		control.getVaccines().add(new VaccineRegistration(3L, null));
+		control.getRecipients().add(new Recipient(1L, "Alex Ford", "alexford@gmail.com", "5511999876640", "12345678918", null));
+		control.getVaccines().add(new VaccineRegistration(4L, "Any Vaccine"));
 		return control;
 	}
 	
