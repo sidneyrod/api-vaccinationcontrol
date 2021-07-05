@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -48,7 +49,7 @@ public class VaccinationControlDTO implements Serializable {
 		vaccineApplicationDate = entity.getVaccineApplicationDate();
 	}
 	
-	public VaccinationControlDTO(VaccinationControl entity, List<Recipient> recipients, List<VaccineRegistration> vaccines) {
+	public VaccinationControlDTO(VaccinationControl entity, Set<Recipient> recipients, Set<VaccineRegistration> vaccines) {
 		this(entity);
 		recipients.forEach(rec -> this.recipients.add(new RecipientDTO(rec)));
 		vaccines.forEach(vac -> this.vaccines.add(new VaccineRegistrationDTO(vac)));

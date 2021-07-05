@@ -2,8 +2,8 @@ package com.apirestvaccinationcontrol.entities;
 
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -43,13 +43,13 @@ public class VaccinationControl implements Serializable {
 	@JoinTable(name = "tb_control_recipient", 
 		joinColumns = @JoinColumn(name = "control_id"),
 		inverseJoinColumns = @JoinColumn(name = "recipient_id"))
-	private List<Recipient> recipients = new ArrayList<>();
+	private Set<Recipient> recipients = new HashSet<>();
 	
 	@ManyToMany
 	@JoinTable(name = "tb_control_vaccine", 
 		joinColumns = @JoinColumn(name = "control_id"),
 		inverseJoinColumns = @JoinColumn(name = "vaccine_id"))
-	private List<VaccineRegistration> vaccines = new ArrayList<>(); 
+	private Set<VaccineRegistration> vaccines = new HashSet<>(); 
 
 	public VaccinationControl() {
 	}
@@ -93,11 +93,11 @@ public class VaccinationControl implements Serializable {
 		this.vaccineApplicationDate = vaccineApplicationDate;
 	}
 	
-	public List<Recipient> getRecipients() {
+	public Set<Recipient> getRecipients() {
 		return recipients;
 	}
 
-	public List<VaccineRegistration> getVaccines() {
+	public Set<VaccineRegistration> getVaccines() {
 		return vaccines;
 	}
 
