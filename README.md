@@ -4,7 +4,7 @@
 
 API created to control vaccine application in the Brazilian population, which will have user registration to receive mandatory data, such as 'name', 'e-mail', 'CPF' and 'birthdate', a registration to register the vaccines available. It will also have a record of application of the vaccine, receiving mandatory data, such as the country of vaccination, amount of dose, application date, receiving recipient and vaccine available.
 
-## Model documentation
+## Documentation model
 ![Conceptual model](https://github.com/sidneyrod/assets/blob/main/others/VaccinationControlModel.png)
 
 ## Technologies used
